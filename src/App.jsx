@@ -1,35 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useFavorites} from './hooks/useFavorites';
+import RecipeItem from './recipe-item/RecipeItem';
+import {FaHeart} from 'react-icons/fa';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const favorites = useFavorites();
   return (
-    <>
+    <section>
+      <header style={{padding: '10px'}}>
+        <span>{favorites.length}</span>
+        <FaHeart />
+      </header>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <RecipeItem recipe={{name: 'Пирог', id: 1}} />
+        <RecipeItem recipe={{name: 'Суп', id: 2}} />
+        <RecipeItem recipe={{name: 'Пицца', id: 3}} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </section>
+  );
 }
 
-export default App
+export default App;
